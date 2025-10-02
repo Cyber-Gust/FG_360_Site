@@ -1,0 +1,1888 @@
+/* Reset Básico e Estilos Globais */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos do Header */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header com Efeito de Rolagem */
+.main-header.scrolled {
+    background-color: #1c1c1b;
+    backdrop-filter: blur(120px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-header.scrolled .nav-link {
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.452);
+    /* Cor do texto do menu quando o fundo é branco */
+}
+
+.main-header.scrolled .nav-link:hover {
+    color: #e7a540;
+    /* Amarelo */
+}
+
+.main-header.scrolled .nav-link.active {
+    color: #e7a540;
+    /* Amarelo */
+    border-bottom: 2px solid #e7a540;
+}
+
+/* Logo */
+.logo {
+    height: 50px;
+    /* Ajuste a altura conforme sua logo */
+    width: auto;
+    display: block;
+}
+
+/* Navegação Principal */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 25px;
+    /* Espaçamento entre os itens do menu */
+}
+
+.nav-link {
+    color: white;
+    /* Cor inicial do texto do menu */
+    /* font-weight: bold; */
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    /* Para o efeito de sublinhado */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #e7a540;
+    /* Amarelo */
+}
+
+.nav-link.active {
+    color: #e7a540;
+    /* Amarelo */
+    border-bottom: 2px solid #e7a540;
+}
+
+/* Dropdown "Serviços" */
+.dropdown {
+    position: relative;
+    padding-bottom: 15px; /* <--- ADICIONE ESTA LINHA */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-top: 0; /* <--- REMOVA A MARGEM DAQUI */
+    min-width: 200px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f4f4f4;
+    color: #e7a540;
+}
+
+.arrow-down {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+
+/* Botão de Cotação (Call to Action) */
+.cta-button {
+    background-color: #e7a540;
+    /* Amarelo */
+    color: white;
+    padding: 10px 22px;
+    border-radius: 5px;
+    font-size: 14px;
+    /* Bordas arredondadas */
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    /* Efeito de aumento */
+}
+
+
+/* Seção Hero (Apenas para demonstração) */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Escurece o vídeo para o texto ficar legível */
+}
+
+.hero-section {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: visible;
+    /* Permite que os cards de baixo "vazem" para fora */
+
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    /* 100/56.25 = 1.77 -> Proporção 16:9 */
+    min-height: 100vh;
+    min-width: 177.77vh;
+    /* 100*1.77 -> Proporção 16:9 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    /* Impede interação com o vídeo */
+}
+
+.hero-content {
+    max-width: 700px;
+    margin-bottom: 50px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.hero-traces {
+    margin-bottom: 20px;
+}
+
+.hero-traces-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.hero-traces span {
+    display: block;
+    width: 180px;
+    height: 2px;
+    background-color: #e7a540;
+    /* Amarelo */
+    border-radius: 0;
+}
+
+.hero-traces span:first-child {
+    margin-bottom: 5px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    /* 56px */
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content h2 {
+    font-size: 15px;
+    /* 20px */
+    font-weight: 400;
+    margin: 0 0 30px 0;
+    line-height: 1.5;
+    max-width: 500px;
+    /* Limita a largura do subtítulo */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button-hero {
+    background-color: #e7a540;
+    /* Amarelo */
+    color: white;
+    padding: 8px 35px;
+    align-items: center;
+    min-height: 40px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    display: inline-flex;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button-hero:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =================================
+   ESTILOS DA SEÇÃO DE CARDS
+   ================================= */
+.cards-section {
+    background-color: #ffffff;
+    padding: 200px 20px 80px 20px;
+    /* Padding-top grande para dar espaço para os cards */
+    position: relative;
+}
+
+.cards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+
+    position: absolute;
+    width: 100%;
+    max-width: 1200px;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    z-index: 5;
+}
+
+.info-card {
+    background-color: #e7a540;
+    /* Amarelo */
+    color: #ffffff;
+    max-width: 300px;
+    padding: 25px;
+    border-radius: 0 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.cards-section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* =================================
+   ESTILOS DA QUEM SOMOS SECTION
+   ================================= */
+
+.about-section {
+    padding-top: 160px;
+    padding-bottom: 30px;
+    margin-top: 60px;
+    background-color: white;
+}
+
+.about-container {
+    margin: 0 auto;
+    padding: 0; /* Garante um espaçamento nas laterais */
+    display: flex;
+    align-items: center;
+    min-height: 600px; /* Dê uma altura mínima para a seção ficar boa */
+
+    /* ESSAS DUAS LINHAS SÃO ESSENCIAIS */
+    position: relative; /* Para que o ::before seja posicionado em relação a este container */
+    overflow: hidden;   /* Para garantir que a forma não crie uma barra de rolagem horizontal */
+}
+
+/* AQUI A MÁGICA ACONTECE */
+.about-container::before {
+    content: ''; /* Obrigatório para pseudo-elementos */
+    position:absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 0;  /* Cola na borda esquerda */
+    transform: translateY(-50%); /* Ajuste fino da centralização vertical */
+    width: 45%; /* Ocupa um pouco mais da metade da largura do container */
+    height: 100%; /* A altura pode ser maior que 100% para criar uma curva mais suave */
+    
+    /* A IMAGEM QUE VOCÊ QUER USAR */
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  url('imgs/ph12.jpg'); /* <<< TROQUE PELO CAMINHO DA SUA IMAGEM */
+    background-size: cover;
+    background-position: center;
+
+    /* A FORMA DE MEIO-CÍRCULO */
+    border-radius: 0 50% 50% 0;
+    z-index: 1; /* Coloca a forma de imagem atrás do conteúdo de texto */
+}
+
+.about-content {
+    /* Ajustamos o conteúdo de texto */
+    position: relative; /* Garante que o conteúdo respeite o z-index */
+    z-index: 2; /* Coloca o texto NA FRENTE da imagem */
+    width: 40%; /* Define a largura da área de texto */
+    margin-left: auto; /* Empurra o texto para a direita */
+    padding-left: 80px; /* Adiciona um respiro entre a curva da imagem e o texto */
+    padding-right: 80px;
+    text-align: left;
+}
+
+.about-image {
+    flex: 1;
+    /* Ocupa metade do espaço */
+    max-width: 90%;
+    margin-left: 20000px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    /* Bordas arredondadas para a imagem */
+}
+
+/* Estilos de texto reutilizáveis que podemos usar em outras seções */
+.section-subtitle {
+    color: #e7a540;
+    /* Amarelo */
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    color: #333;
+    font-size: 33px;
+    /* 40px */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.section-paragraph {
+    color: #555;
+    font-size: 15px;
+    /* 16px */
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.cta-button-secondary {
+    background-color: #e7a540;
+    color: white;
+    padding: 12px 30px;
+    border: 2px solid #e7a540;
+    /* Borda amarela */
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.cta-button-secondary:hover {
+    background-color: #e7a540;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* =================================
+   ESTILOS DA SOBRE MAIS SECTION
+   ================================= */
+
+.more-about-section {
+    padding-top: 20px;
+    padding-bottom: 100px;
+    background-color: #ffffff;
+    /* Fundo branco para alternar com a seção anterior */
+    overflow: hidden;
+    padding-left: 100px;
+    padding-right: 100px;
+    /* Evita que a imagem vaze caso seja muito grande */
+}
+
+.more-about-container {
+    max-width: 1200px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin: 0 auto;
+
+    flex-direction: row-reverse;
+}
+
+.more-about-image {
+    flex: 1;
+    max-width: 100%;
+    
+    /* Um pouco menor que o texto para dar mais destaque ao conteúdo */
+}
+
+.more-about-image img {
+    width: 120%;    /* Remove pequenos espaços em branco abaixo da imagem */
+    border-radius: 10px;
+    
+}
+
+.more-about-content {
+    flex: 1;
+    max-width: 55%;
+}
+
+/* - A classe .hero-traces já foi estilizada na Hero Section.
+   - As classes .section-title, .section-paragraph e .cta-button-secondary
+     já foram estilizadas na seção "Quem Somos".
+   - Estamos reutilizando os estilos para manter a consistência!
+*/
+
+/* =================================
+   ESTILOS DA SERVIÇOS SECTION
+   ================================= */
+
+.services-section {
+    padding: 100px 80px;
+
+    background-color: #1c1c1b;
+    /* Preto/Cinza bem escuro */
+}
+
+.services-container {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.services-content {
+    flex: 1;
+    max-width: 25%;
+    /* O texto ocupa um espaço menor */
+    text-align: left;
+}
+
+/* Precisamos ajustar as cores dos títulos e parágrafos para o fundo escuro */
+.services-content .section-title,
+.services-content .section-paragraph {
+    color: #ffffff;
+}
+
+/* Reutilizando o botão principal que criamos para o header */
+.services-content .cta-button {
+    background-color: #e7a540;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    /* font-weight: bold; */
+    transition: transform 0.3s ease;
+}
+
+.services-content .cta-button:hover {
+    transform: scale(1.05);
+}
+
+
+/* Container dos Cards de Serviço */
+.services-cards-container {
+    flex: 1;
+    max-width: 100%;
+    /* Os cards ocupam o espaço maior */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap:20px;
+    align-items: center;
+    justify-content: start;
+
+    /* Alinha o conteúdo na base do card */
+    min-height: 380px;
+    min-width: 200px;
+    /* Garante que o card seja alto */
+    padding: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    /* Garante que a imagem de fundo não ultrapasse as bordas arredondadas */
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    /* Efeito de ampliar */
+    /* Sombra amarelada sutil */
+}
+
+/* Camada da imagem de fundo */
+.card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 5px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .card-bg-image {
+    transform: scale(1.1);
+    /* Efeito de zoom na imagem de fundo também */
+}
+
+/* Overlay escuro para garantir a legibilidade do texto */
+.card-bg-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.service-card-content {
+    position: relative;
+    z-index: 3;
+    /* Conteúdo fica acima da imagem e do overlay */
+}
+
+.service-card-icon {
+    margin-bottom: 15px;
+}
+
+.service-card-icon img {
+    width: 60px;
+    height: auto;
+    opacity: 0.9;
+}
+
+.service-card-title {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.service-card-description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* =================================
+   ESTILOS DA FROTA SECTION
+   ================================= */
+
+.fleet-section {
+    padding: 100px 20px;
+    background-color: #f8f9fa;
+    /* Alternando a cor de fundo novamente */
+}
+
+.fleet-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.fleet-content {
+    flex: 1;
+    max-width: 50%;
+    text-align: left;
+}
+
+.fleet-card-wrapper {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    /* Centraliza o card no espaço disponível */
+    align-items: center;
+}
+
+.fleet-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    /* Raio de canto */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    /* Sombra (shadow) */
+    text-align: center;
+    max-width: 400px;
+    /* Define uma largura máxima para o card */
+    border-top: 5px solid #e7a540;
+    /* Detalhe em amarelo no topo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    text-align: left;
+}
+
+.fleet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+.fleet-card-icon img {
+    width: 80px;
+    /* Tamanho do ícone */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.fleet-card-title {
+    font-size: 1.75rem;
+    color: #333;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+}
+
+.fleet-card-element {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.fleet-card-element>img {
+    margin-right: 5px;
+}
+
+.fleet-card-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.fleet-card-button {
+    background-color: #e7a540;
+    /* Amarelo */
+    color: #333;
+    padding: 14px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.fleet-card-button:hover {
+    background-color: #e7a540;
+    /* Um tom de amarelo mais escuro */
+}
+
+/* =================================
+   ESTILOS DA PARCEIROS & CLIENTES SECTION
+   ================================= */
+
+.partners-section {
+    padding: 20px 0;
+    /* Aumentei o padding vertical e removi o horizontal */
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.partners-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.partners-title-block {
+    margin-bottom: 60px;
+}
+
+/* Wrapper do Carrossel */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Esconde tudo que sair da área do wrapper */
+    margin-bottom: 30px;
+    /* Espaço entre os dois carrosséis */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Trilha do Carrossel */
+.carousel-track {
+    display: flex;
+    width: calc(250px * 12);
+    /* Largura de cada slide X número total de slides (originais + duplicados) */
+}
+
+.scroll-right {
+    animation: scrollRight 40s linear infinite;
+}
+
+/* Slide (item do carrossel) */
+.carousel-slide {
+    height: 200px;
+    /* Altura de cada logo */
+    width: 250px;
+    /* Largura de cada logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 1000px;
+    /* Altura máxima da imagem do logo */
+    filter: grayscale(100%);
+    /* Deixa os logos em escala de cinza */
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.carousel-slide:hover img {
+    filter: grayscale(0%);
+    /* Remove o filtro ao passar o mouse */
+    opacity: 1;
+}
+
+/* Animações Keyframes */
+@keyframes scrollRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-250px * 6));
+        /* Desloca para a esquerda pelo tamanho dos slides originais */
+    }
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(calc(-250px * 6));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* =================================
+   ESTILOS DA PARCEIROS & CLIENTES SECTION 2
+   ================================= */
+
+.partners-section2 {
+    padding-top: 40PX;
+    /* Aumentei o padding vertical e removi o horizontal */
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.partners-container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.partners-title-block2 {
+    margin-bottom: 30px;
+}
+
+/* Wrapper do Carrossel */
+.carousel-wrapper2 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Esconde tudo que sair da área do wrapper */
+    margin-bottom: 30px;
+    /* Espaço entre os dois carrosséis */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Trilha do Carrossel */
+.carousel-track2 {
+    display: flex;
+    /* Largura de cada slide (250px) X número TOTAL de slides (12 originais + 12 duplicados = 24) */
+    width: calc(250px * 24);
+}
+
+.scroll-right2 {
+    /* Ajuste o tempo (30s) se quiser mais rápido ou mais lento */
+    animation: scrollRight 35s linear infinite;
+}
+
+/* Slide (item do carrossel) */
+.carousel-slide2 {
+    height: 200px;
+    /* Altura de cada logo */
+    width: 400px;
+    /* Largura de cada logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 ;
+}
+
+.carousel-slide2 img {
+    /* Altura máxima da imagem do logo */
+    filter: grayscale(100%);
+    /* Deixa os logos em escala de cinza */
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.carousel-slide2:hover img {
+    filter: grayscale(0%);
+    /* Remove o filtro ao passar o mouse */
+    opacity: 1;
+}
+
+/* Animações Keyframes */
+@keyframes scrollRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        /* Desloca para a esquerda pelo tamanho dos 12 slides ORIGINAIS */
+        transform: translateX(calc(-300px * 12));
+    }
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(calc(-250px * 12));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* =================================
+ ESTILOS DA SEÇÃO DE COTAÇÃO/CONTATO
+ ================================= */
+
+.contact-section {
+  background-color: #1c1c1b;
+  padding: 60px 80px;
+}
+
+.contact-container {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 200px;
+}
+
+/* Coluna do Formulário */
+.form-wrapper {
+  flex-basis: 50%;
+}
+
+.contact-title {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.contact-title span {
+  color: #e7a540;
+  /* Amarelo */
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+.contact-form .form-row {
+  display: flex;
+  gap: 50px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+  flex: 1;
+  /* Faz com que os grupos em uma linha dividam o espaço */
+}
+
+.contact-form .form-group.full-width {
+  width: 100%;
+}
+
+.contact-form label {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Adiciona o asterisco vermelho */
+.contact-form label::after {
+  content: ' *';
+  color: #e74c3c;
+}
+
+.contact-form input,
+.contact-form select {
+  width: 100%;
+  background-color: #2d2d2d;
+  border: 1px solid #444;
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: normal;
+  /* ou um valor como 1.5 para maior espaçamento */
+}
+
+.contact-form select {
+  /* Mantém as propriedades que você já tinha: */
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+
+  height: auto;
+
+  box-sizing: border-box;
+
+  padding: 18px;
+  width: 110%;
+  max-width: 630px;
+}
+
+.submit-button {
+  width: 300px;
+  background-color: #e7a540;
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #e7a540;
+}
+
+/* Coluna da Direita (Sidebar) */
+.sidebar-wrapper {
+  flex-basis: 35%;
+}
+
+.sidebar-title {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.channels-block {
+  margin-bottom: 50px;
+}
+
+.channel-card {
+  background-color: #141414;
+  border-radius: 10px;
+  padding: 20px;
+  border-color: #000000;
+  border: #000000;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.channel-card img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+  /* Deixa os ícones pretos em branco */
+}
+
+.about-us-block p {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+/* =================================
+   ESTILOS DO FOOTER
+   ================================= */
+
+.main-footer {
+    color: #dcdcdc;
+    /* Cor de texto padrão para o footer */
+
+}
+
+.footer-main {
+    position: relative;
+    padding: 80px 20px;
+    background-image: url('imgs/bg_footer.jpg');
+    /* << COLOQUE UMA IMAGEM DE FUNDO AQUI */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Overlay "esfumaçado" */
+.footer-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.85);
+    z-index: 1;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que as colunas quebrem em telas menores */
+    gap: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 220px;
+    /* Largura mínima para cada coluna */
+}
+
+/* Coluna "Sobre" */
+.about-col .footer-logo {
+    max-width: 180px;
+    margin-bottom: 20px;
+}
+
+.about-col .footer-about-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.about-col .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #555;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.about-col .social-icon:hover {
+    background-color: #e7a540;
+    border-color: #e7a540;
+}
+
+.about-col .social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Colunas de Links */
+.footer-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.links-col ul,
+.services-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.links-col ul li,
+.services-col ul li {
+    margin-bottom: 12px;
+}
+
+.links-col ul li a,
+.services-col ul li a {
+    color: #dcdcdc;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.links-col ul li a:hover,
+.services-col ul li a:hover {
+    color: #e7a540;
+    padding-left: 5px;
+}
+
+/* Coluna de Contato */
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.contact-list li img {
+    width: 20px;
+    margin-top: 3px;
+}
+
+.contact-list li a,
+.contact-list li span {
+    color: #dcdcdc;
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.contact-list li a:hover {
+    color: #e7a540;
+}
+
+/* Barra Inferior do Footer */
+.footer-bottom {
+    background-color: #000000;
+    padding: 20px;
+}
+
+.footer-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.credits-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.credits-text a {
+    color: #aaa;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.credits-text a:hover {
+    color: #fff;
+}
+
+.credits-logo {
+    height: 20px;
+    width: auto;
+}
+
+/* =================================
+   ESTILOS DO BOTÃO WHATSAPP
+   ================================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 65px;
+    height: 65px;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 22px;
+    height: 22px;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+
+@media(max-width: 770px) {
+    .main-nav {
+        display: none;
+    }
+
+    .main-header {
+        display: block;
+        max-height: 60px;
+    }
+    
+    .header-container {
+        padding-right: 25px;
+        display: flex;
+    }
+
+    .hero-section {
+        min-height: 800px;
+    }
+
+    .video-background {
+        width: 100vw;
+        height: 190vw;
+    }
+
+    .hero-content {
+        margin-top: -40px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        margin-bottom: 200px;
+        padding: 0px 40px;
+        
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .hero-content h2 {
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(1, 3fr);
+        align-items: center;
+        justify-items: center;
+    }
+
+    .info-card {
+        max-width: 90vw;
+        min-height: 100px;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .card-icon {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 0px;
+    }
+
+    .info-card h3 {
+        font-size: 15px;
+    }
+
+    .info-card p {
+        font-size: 13px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+
+    .about-section {
+        padding: 0 10px;
+        margin-top: 250px;
+        margin-bottom: 0px;
+    }
+
+    .about-container {
+        padding-top: 20px;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .about-container::before {
+        /* No celular, podemos esconder a forma para simplificar */
+        display: none; 
+    }
+
+    .about-content {
+        /* O conteúdo passa a ocupar toda a largura */
+        width: 100%;
+        padding-top: 30px;
+        margin-left: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center; /* Centralizar pode ficar bom no mobile */
+    }
+
+    .about-image {
+        max-width: 100%;
+    }
+
+    .hero-traces {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-traces span {
+        width: 80vw;
+        height: 1px;
+    }
+
+    .partners-section2 {
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+
+    .more-about-section {
+        padding-bottom: 80px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .more-about-container {
+        max-width: 90vw;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .more-about-image {
+        /* display: none; */
+        min-width: 300px;
+        min-height: 80px;
+        margin-right: 45px;
+    
+    }
+
+
+    .more-about-content {
+        margin-top: 20px;
+        padding: 0px 0px;
+        max-width: 100%;
+    }
+
+    .services-section {
+        padding: 100px 15px;
+    }
+
+    .services-container {
+        max-width: 90vw;
+        gap: 60px;
+        flex-direction: column;
+    }
+
+    .services-content {
+        flex: 1;
+        max-width: 100%;
+        text-align: center;
+    }
+
+
+    .services-cards-container {
+        max-width: 95%;
+        grid-template-columns: repeat(1, 3fr);
+        gap: 25px;
+    }
+
+    .service-card {
+        justify-content: center;
+        min-height: 280px;
+        min-width: 200px;
+
+        text-align: center;
+    }
+
+    .service-card-icon img {
+        width: 40px;
+    }
+
+    .fleet-section{
+        padding: 50px 10px;
+    }
+
+    .fleet-container {
+        flex-direction: column;
+    }
+
+    .fleet-content {
+        max-width: 100%;
+        text-align: center;
+        padding:  0 20px;
+    }
+
+    .fleet-card-wrapper {
+        max-width: 100%;
+    }
+
+    .fleet-card{
+        max-width: 100vw;
+        width: 100vw;
+        padding: 10px;
+        margin: 0 10px;
+    }
+
+
+    /* =================================
+        Estilos da Seção de Contato
+       ================================= */
+    .contact-container {
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+
+        overflow: hidden;
+    }
+
+    .contact-section {
+        padding: 5px;
+    }
+
+    .form-wrapper,
+    .sidebar-wrapper {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-form .form-row {
+        flex-direction: column;
+        gap: 0;
+        max-width: 320px;
+    }
+
+    .contact-form select {
+        width: 350px;
+    }
+
+    .contact-form label {
+        text-align: left;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
+
+    .contact-title {
+        font-size: 28px;
+    }
+
+    .channels-block,
+    .about-us-block {
+        text-align: left;
+    }
+
+    .contact-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-list li {
+        gap: 5px;
+    }
+    /* =================================
+        Estilos do Footer
+       ================================= */
+    .footer-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-col {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .about-col .footer-logo {
+        margin: 0 auto 20px;
+    }
+
+    .about-col .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}    
+
+/* Importando uma fonte para um visual mais moderno */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.frota-expansivel {
+    width: 100%; /* ALTERAÇÃO 1: Ocupa a largura total */
+    padding: 60px 0; /* Espaçamento vertical, sem horizontal */
+}
+
+.frota-titulo {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* Contêiner dos cards */
+.frota-container {
+    display: flex;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 0; /* ALTERAÇÃO 1: Remove o arredondamento nas bordas da tela */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Estilo base de cada card de veículo */
+.frota-card {
+    flex: 1;
+    min-width: 80px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    transition: all 0.6s ease-in-out;
+    cursor: pointer;
+    filter: grayscale(100%);
+}
+
+/* Efeito ao passar o mouse */
+.frota-card:hover {
+    flex: 2;
+    filter: grayscale(0%);
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+/* IMAGENS DE FUNDO DOS VEÍCULOS (Mantenha as suas) */
+#card-tres-quartos { background-image: url('imgs/veiculos/caminhao_34.jpg'); }
+#card-carreta { background-image: url('imgs/veiculos/carreta_aberta.jpg'); }
+#card-truck { background-image: url('imgs/veiculos/caminhao_truck.png'); }
+#card-van { background-image: url('imgs/veiculos//van.png'); }
+#card-moto { background-image: url('imgs/veiculos/moto.jpg'); }
+#card-fiorino { background-image: url('imgs/veiculos/fiorino.png'); }
+
+/* Estilo da sobreposição de conteúdo */
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+}
+
+/* ALTERAÇÃO 2: Título começa na horizontal e na base */
+.card-title {
+    font-size: 1.8rem;
+    margin: 0;
+    /* Removemos 'writing-mode', 'text-orientation', e 'transform: rotate' */
+    position: absolute; /* Usamos position absolute para controle fino */
+    left: 25px;
+    bottom: 25px;
+    transform: translateY(0); /* Estado inicial é na base */
+    transition: all 0.6s ease-in-out;
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+}
+
+/* ALTERAÇÃO 2: Título apenas sobe no hover */
+.frota-card:hover .card-title {
+    transform: translateY(-80px); /* Apenas sobe para a posição final */
+}
+
+.frota-card:hover .card-icon {
+    transform: translateY(-90px);
+    opacity: 1;
+}
+
+.frota-card:hover .card-description {
+    max-height: 150px;
+    opacity: 1;
+}
+
+/* Media Queries para responsividade (sem alterações aqui) */
+@media (max-width: 1024px) {
+    .frota-titulo { font-size: 2.2rem; }
+    .frota-container { height: 400px; }
+    .card-title { font-size: 1.5rem; }
+    .card-icon { font-size: 2.5rem; }
+}
+
+/* ============================================== */
+/* === INÍCIO DAS ALTERAÇÕES PARA MOBILE (<= 768px) === */
+/* ============================================== */
+@media (max-width: 768px) {
+    .frota-titulo {
+        font-size: 1.8rem;
+        margin-bottom: 60px;
+    }
+
+    .frota-container {
+        flex-direction: column; /* Cards um embaixo do outro */
+        height: auto; /* Altura automática */
+        box-shadow: none; /* Remove a sombra do container principal */
+    }
+
+    .frota-card {
+        flex: none; /* Desativa o flex-grow/shrink */
+        width: 100%; /* Ocupa a largura total */
+        height: 150px; /* Altura padrão para cards "fechados" */
+        filter: grayscale(100%); /* Já colorido no mobile */
+        margin-bottom: 0; /* Coloca os cards colados */
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha divisória sutil */
+        border-radius: 0; /* Remove bordas arredondadas nos cards */
+        box-shadow: none; /* Remove sombra do card para desktop */
+        overflow: hidden; /* Garante que a descrição só apareça ao expandir */
+        transition: height 0.6s ease-in-out, box-shadow 0.3s ease-in-out; /* Transição para altura */
+    }
+    
+    /* Efeito de click para cards no mobile */
+    .frota-card.active {
+        height: 350px; /* Altura quando o card está "aberto" */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Adiciona sombra ao abrir */
+    }
+
+    /* Conteúdo do overlay no mobile */
+    .card-overlay {
+        justify-content: flex-start; /* Alinha o conteúdo ao topo */
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)); /* Gradiente de cima para baixo */
+    }
+
+    .card-icon {
+        display: block; /* Mostra o ícone no mobile */
+        font-size: 2.2rem;
+        opacity: 1; /* Visível por padrão */
+        margin-bottom: 5px;
+        transform: translateY(0); /* Reseta a transformação de desktop */
+    }
+
+    .card-title {
+        position: relative; /* Volta ao fluxo normal */
+        left: 0;
+        bottom: 0;
+        font-size: 1.4rem;
+        transform: translateY(0); /* Reseta a transformação de desktop */
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Descrição escondida por padrão e aparece com a classe 'active' */
+    .card-description {
+        max-height: 0; /* Escondido por padrão */
+        opacity: 0;
+        font-size: 0.9rem;
+        padding-right: 15px; /* Para não ficar colado na borda direita */
+        transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    }
+
+    .frota-card.active .card-description {
+        max-height: 150px; /* Mostra a descrição quando ativo */
+        opacity: 1;
+    }
+
+    /* Remove efeitos de hover para mobile */
+    .frota-card:hover {
+        flex: none; /* Desativa a expansão horizontal */
+        filter: grayscale(0%);
+        transform: scale(1.0);
+        box-shadow: none;
+        z-index: auto;
+    }
+    .frota-card:hover .card-title,
+    .frota-card:hover .card-icon {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
