@@ -49,7 +49,7 @@
                 <h1 class="contact-title">FAÇA PARTE DA NOSSA <span>EQUIPE</span></h1>
                 <p class="form-page-subtitle">Se você se identifica com nossos valores e quer crescer profissionalmente, preencha o formulário e envie seu currículo!</p>
 
-                <form id="trabalhe-conosco-form" class="contact-form" action="URL_DO_SEU_BACKEND" method="POST" enctype="multipart/form-data">
+                <form id="trabalhe-conosco-form" class="contact-form" enctype="multipart/form-data">
                     <div class="form-group full-width">
                         <label for="nome">Nome Completo</label>
                         <input type="text" id="nome" name="nome" required>
@@ -101,7 +101,120 @@
     </a>
 
     <script src="../script.js"></script>
-    <script src="../js/form-handler.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    // 1. CONFIGURAÇÃO DO SUPABASE (COLE SUAS CHAVES AQUI)
+    const SUPABASE_URL = 'https://plmyiaviwwcyovxslqlb.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsbXlpYXZpd3djeW92eHNscWxiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkzNDk5ODMsImV4cCI6MjA3NDkyNTk4M30.vM8B4vTBnihDSP2MnFvLQkPVBqYSHFYmV0T8PHWAOJI';
+
+    // --- CORREÇÃO AQUI ---
+    // Usamos a variável global 'supabase' (que veio do primeiro script) para criar nosso cliente
+    // e o salvamos em uma nova variável chamada 'supabaseClient'.
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // 2. SELETORES DOS FORMULÁRIOS E MENSAGENS
+    const cotacaoForm = document.getElementById('cotacao-form');
+    const agregadoForm = document.getElementById('seja-agregado-form');
+    const trabalhoForm = document.getElementById('trabalhe-conosco-form');
+
+    // Função para mostrar mensagens de feedback
+    function showFeedback(formElement, message, isError = false) {
+        const feedbackDiv = formElement.nextElementSibling;
+        if (feedbackDiv) {
+        feedbackDiv.textContent = message;
+        feedbackDiv.style.color = isError ? '#D8000C' : '#4F8A10';
+        feedbackDiv.style.display = 'block';
+        }
+    }
+
+    // 3. LÓGICA DE ENVIO DOS FORMULÁRIOS
+    async function handleFormSubmit(event, tableName, fileConfig = null) {
+        event.preventDefault();
+        const form = event.target;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+        showFeedback(form, '');
+
+        try {
+        const formData = new FormData(form);
+        const formProps = Object.fromEntries(formData);
+        
+        let fileUrl = null;
+        if (fileConfig && formProps[fileConfig.field]) {
+            const file = formProps[fileConfig.field];
+            if (file.size > 0) {
+            const fileName = `${Date.now()}-${file.name}`;
+            // --- CORREÇÃO AQUI --- (usando supabaseClient)
+            const { data: uploadData, error: uploadError } = await supabaseClient
+                .storage
+                .from(fileConfig.bucket)
+                .upload(fileName, file);
+
+            if (uploadError) throw uploadError;
+
+            // --- CORREÇÃO AQUI --- (usando supabaseClient)
+            const { data: urlData } = supabaseClient
+                .storage
+                .from(fileConfig.bucket)
+                .getPublicUrl(uploadData.path);
+            fileUrl = urlData.publicUrl;
+            }
+        }
+
+        const dataToInsert = {};
+        const fieldMapping = {
+            'nome-responsavel': 'nome_responsavel', 'cpf-cnpj': 'cpf_cnpj',
+            'tipo-veiculo': 'tipo_veiculo', 'placa-veiculo': 'placa_veiculo',
+            'cidade': 'cidade_estado', 'area': 'area_interesse'
+        };
+
+        for (const key in formProps) {
+            if (key !== fileConfig?.field) {
+            const dbKey = fieldMapping[key] || key;
+            dataToInsert[dbKey] = formProps[key];
+            }
+        }
+        
+        if (fileUrl) {
+            dataToInsert[fileConfig.dbColumn] = fileUrl;
+        }
+        
+        // --- CORREÇÃO AQUI --- (usando supabaseClient)
+        const { error: insertError } = await supabaseClient.from(tableName).insert([dataToInsert]);
+        if (insertError) throw insertError;
+        
+        showFeedback(form, 'Formulário enviado com sucesso! Obrigado.', false);
+        form.reset();
+
+        } catch (error) {
+        console.error('Erro:', error);
+        showFeedback(form, `Erro ao enviar: ${error.message}`, true);
+        } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+        }
+    }
+
+    // 4. ADICIONA OS EVENTOS AOS FORMULÁRIOS
+    if (cotacaoForm) {
+        cotacaoForm.addEventListener('submit', (e) => handleFormSubmit(e, 'cotacoes'));
+    }
+    
+    if (agregadoForm) {
+        agregadoForm.addEventListener('submit', (e) => handleFormSubmit(e, 'agregados', {
+        field: 'documentos', bucket: 'documentos_agregados', dbColumn: 'documento_url'
+        }));
+    }
+    
+    if (trabalhoForm) {
+        trabalhoForm.addEventListener('submit', (e) => handleFormSubmit(e, 'candidaturas', {
+        field: 'curriculo', bucket: 'curriculos', dbColumn: 'curriculo_url'
+        }));
+    }
+    </script>
 
 </body>
 </html>

@@ -23,7 +23,7 @@ ul {
     padding: 0;
 }
 
-/* Estilos do Header */
+/* Estilos do Header (Desktop) - Sem alterações aqui */
 .main-header {
     position: fixed;
     top: 0;
@@ -34,85 +34,57 @@ ul {
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
     padding: 15px 0;
 }
-
 .header-container {
     display: flex;
     padding: 0 30px;
     justify-content: space-between;
     align-items: center;
 }
-
-/* Header com Efeito de Rolagem */
 .main-header.scrolled {
     background-color: #1c1c1b;
     backdrop-filter: blur(120px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
 .main-header.scrolled .nav-link {
     color: white;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.452);
-    /* Cor do texto do menu quando o fundo é branco */
 }
-
 .main-header.scrolled .nav-link:hover {
     color: #e7a540;
-    /* Amarelo */
 }
-
 .main-header.scrolled .nav-link.active {
     color: #e7a540;
-    /* Amarelo */
     border-bottom: 2px solid #e7a540;
 }
-
-/* Logo */
 .logo {
     height: 50px;
-    /* Ajuste a altura conforme sua logo */
     width: auto;
     display: block;
 }
-
-/* Navegação Principal */
 .main-nav {
     display: flex;
     align-items: center;
 }
-
 .nav-list {
     display: flex;
     gap: 25px;
-    /* Espaçamento entre os itens do menu */
 }
-
 .nav-link {
     color: white;
-    /* Cor inicial do texto do menu */
-    /* font-weight: bold; */
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
-    /* Para o efeito de sublinhado */
     transition: color 0.3s ease, border-bottom 0.3s ease;
 }
-
 .nav-link:hover {
     color: #e7a540;
-    /* Amarelo */
 }
-
 .nav-link.active {
     color: #e7a540;
-    /* Amarelo */
     border-bottom: 2px solid #e7a540;
 }
-
-/* Dropdown "Serviços" */
 .dropdown {
     position: relative;
-    padding-bottom: 15px; /* <--- ADICIONE ESTA LINHA */
 }
-
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -122,50 +94,154 @@ ul {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     padding: 10px 0;
-    margin-top: 0; /* <--- REMOVA A MARGEM DAQUI */
     min-width: 200px;
 }
-
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-
 .dropdown-menu li a {
     color: #333;
     padding: 10px 20px;
     display: block;
     transition: background-color 0.3s ease;
 }
-
 .dropdown-menu li a:hover {
     background-color: #f4f4f4;
     color: #e7a540;
 }
-
 .arrow-down {
     font-size: 0.7em;
     margin-left: 5px;
 }
-
-
-/* Botão de Cotação (Call to Action) */
 .cta-button {
     background-color: #e7a540;
-    /* Amarelo */
     color: white;
     padding: 10px 22px;
     border-radius: 5px;
     font-size: 14px;
-    /* Bordas arredondadas */
-    /* font-weight: bold; */
     text-transform: uppercase;
     display: inline-block;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .cta-button:hover {
     transform: scale(1.05);
-    /* Efeito de aumento */
+}
+
+/* --- NOVOS ESTILOS PARA O MENU MOBILE --- */
+
+/* Esconde o botão sanduíche no desktop */
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001; /* Para ficar acima de outros elementos */
+}
+
+/* Media Query para telas menores (Mobile) */
+@media(max-width: 770px) {
+    .header-container {
+        /* Cria o grid de 3 colunas: esquerda, centro (auto), direita */
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        padding: 0 20px; /* Um pouco menos de padding no mobile */
+    }
+
+    /* Posiciona a logo no centro */
+    .logo-link {
+        grid-column: 2; /* Coloca no segundo slot do grid */
+        justify-self: center; /* Centraliza horizontalmente */
+    }
+    
+    /* Posiciona o botão de cotação na direita */
+    .header-cta {
+        grid-column: 3; /* Coloca no terceiro slot do grid */
+        justify-self: end; /* Alinha à direita */
+    }
+
+    /* Diminui um pouco o botão de cotação */
+    .cta-button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    /* Mostra o botão sanduíche e posiciona na esquerda */
+    .mobile-menu-button {
+        display: flex;
+        flex-direction: column;
+        gap: 5px; /* Espaço entre as barrinhas */
+        grid-column: 1; /* Coloca no primeiro slot do grid */
+        justify-self: start; /* Alinha à esquerda */
+    }
+
+    /* Estilo das barrinhas do sanduíche */
+    .mobile-menu-button span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        border-radius: 2px;
+    }
+
+    /* Estilo da Navegação que abre (Menu Lateral) */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Começa escondido fora da tela */
+        width: 100%;
+        height: 100%;
+        background-color: #1c1c1b;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.4s ease-in-out;
+    }
+    
+    /* Classe .open que será adicionada via JS para mostrar o menu */
+    .main-nav.open {
+        left: 0;
+    }
+
+    /* A lista de links agora é vertical */
+    .nav-list {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px; /* Maior espaçamento vertical */
+    }
+
+    .nav-link {
+        font-size: 1.2rem; /* Fonte maior para melhor toque */
+    }
+
+    /* Dropdown no mobile */
+    .dropdown {
+        padding-bottom: 0;
+    }
+    .dropdown-menu {
+        position: static; /* Remove o posicionamento absoluto */
+        display: none; /* Começa escondido */
+        background: none;
+        box-shadow: none;
+        padding: 10px 0 0 0;
+        text-align: center;
+    }
+    .dropdown:hover .dropdown-menu {
+        display: block; /* Garante que funcione no mobile também */
+    }
+    .dropdown-menu li a {
+        color: #ccc;
+        padding: 8px 15px;
+    }
+
+    /* Botão de Fechar */
+    .mobile-menu-button.close-button {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 3rem;
+        color: white;
+    }
 }
 
 
@@ -832,12 +908,12 @@ ul {
 /* Trilha do Carrossel */
 .carousel-track {
     display: flex;
-    width: calc(250px * 12);
+    width: calc(250px * 18);
     /* Largura de cada slide X número total de slides (originais + duplicados) */
 }
 
 .scroll-right {
-    animation: scrollRight 40s linear infinite;
+    animation: scrollRight 50s linear infinite;
 }
 
 /* Slide (item do carrossel) */
@@ -853,8 +929,8 @@ ul {
 }
 
 .carousel-slide img {
-    max-width: 100%;
-    max-height: 1000px;
+    max-width: 150%;
+    max-height: 130px;
     /* Altura máxima da imagem do logo */
     filter: grayscale(100%);
     /* Deixa os logos em escala de cinza */
@@ -869,14 +945,14 @@ ul {
 }
 
 /* Animações Keyframes */
+/* Animações Keyframes CORRIGIDAS */
 @keyframes scrollRight {
     from {
         transform: translateX(0);
     }
-
     to {
-        transform: translateX(calc(-250px * 6));
-        /* Desloca para a esquerda pelo tamanho dos slides originais */
+        /* METADE DO PERCURSO: largura de 1 slide (250px) X número de slides ORIGINAIS (3) */
+        transform: translateX(calc(-250px * 3));
     }
 }
 
@@ -1373,19 +1449,6 @@ ul {
 
 
 @media(max-width: 770px) {
-    .main-nav {
-        display: none;
-    }
-
-    .main-header {
-        display: block;
-        max-height: 60px;
-    }
-    
-    .header-container {
-        padding-right: 25px;
-        display: flex;
-    }
 
     .hero-section {
         min-height: 800px;
