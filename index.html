@@ -617,6 +617,50 @@
         }));
     }
     </script>
-</body>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const mainNav = document.getElementById('main-nav');
+    const navLinks = mainNav.querySelectorAll('.nav-link');
 
+    // Função para abrir o menu
+    const openMenu = () => {
+        mainNav.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Impede o scroll da página
+    };
+
+    // Função para fechar o menu
+    const closeMenu = () => {
+        mainNav.classList.remove('open');
+        document.body.style.overflow = ''; // Libera o scroll
+    };
+
+    // Evento para abrir o menu ao clicar no botão sanduíche
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openMenu);
+    }
+
+    // Evento para fechar o menu ao clicar no 'X'
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMenu);
+    }
+
+    // Evento para fechar o menu ao clicar em um dos links
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Adiciona o efeito de scroll no header
+    const header = document.querySelector('.main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    });
+    </script>
+</body>
 </html>
