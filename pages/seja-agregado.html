@@ -13,33 +13,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="FG 360" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body>
 
     <header class="main-header">
         <div class="header-container">
-            <a href="../index.html" class="logo-link">
-                <img src="../imgs/logo.png" alt="Logo FG 360" class="logo">
+            <button id="mobile-menu-toggle" class="mobile-menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <a href="#" class="logo-link">
+                <img src="imgs/logo.png" alt="Logo FG 360" class="logo">
             </a>
-            <nav class="main-nav">
+            
+            <nav class="main-nav" id="main-nav">
+                <button id="mobile-menu-close" class="mobile-menu-button close-button">&times;</button>
+
                 <ul class="nav-list">
-                    <li><a href="../index.html" class="nav-link">Início</a></li>
-                    <li><a href="../index.html#quemsomos" class="nav-link">Quem Somos</a></li>
-                    <li><a href="trabalhe-conosco.html" class="nav-link">Trabalhe Conosco</a></li>
-                    <li><a href="seja-agregado.html" class="nav-link active">Seja Nosso Agregado</a></li> <li class="dropdown">
-                         <a href="../index.html#servicos" class="nav-link">Serviços <span class="arrow-down">&#9660;</span></a>
+                    <li><a href="#" class="nav-link active">Início</a></li>
+                    <li><a href="#quemsomos" class="nav-link">Quem Somos</a></li>
+                    <li><a href="pages/trabalhe-conosco.html" class="nav-link">Trabalhe Conosco</a></li>
+                    <li><a href="pages/seja-agregado.html" class="nav-link">Seja Nosso Agregado</a></li>
+                    <li class="dropdown">
+                        <a href="#servicos" class="nav-link">Serviços <span class="arrow-down">&#9660;</span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="carga-direta.html">Carga Direta</a></li>
-                            <li><a href="carga-fracionada.html">Carga Fracionada</a></li>
-                            <li><a href="coleta-express.html">Coleta Express</a></li>
+                            <li><a href="pages/carga-direta.html">Carga direta</a></li>
+                            <li><a href="pages/carga-fracionada.html">Carga Fracionada</a></li>
+                            <li><a href="pages/coleta-express.html">Coleta express</a></li>
                         </ul>
                     </li>
                     <li><a href="https://portal.fg360transportes.com.br/rastreio" target="_blank" class="nav-link">Rastreie sua NF</a></li>
                 </ul>
             </nav>
+
             <div class="header-cta">
-                <a href="../index.html#contato" class="cta-button">Cotação</a>
+                <a href="#contato" class="cta-button">Cotação</a>
             </div>
         </div>
     </header>
@@ -228,6 +245,51 @@
         field: 'curriculo', bucket: 'curriculos', dbColumn: 'curriculo_url'
         }));
     }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const mainNav = document.getElementById('main-nav');
+    const navLinks = mainNav.querySelectorAll('.nav-link');
+
+    // Função para abrir o menu
+    const openMenu = () => {
+        mainNav.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Impede o scroll da página
+    };
+
+    // Função para fechar o menu
+    const closeMenu = () => {
+        mainNav.classList.remove('open');
+        document.body.style.overflow = ''; // Libera o scroll
+    };
+
+    // Evento para abrir o menu ao clicar no botão sanduíche
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openMenu);
+    }
+
+    // Evento para fechar o menu ao clicar no 'X'
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMenu);
+    }
+
+    // Evento para fechar o menu ao clicar em um dos links
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Adiciona o efeito de scroll no header
+    const header = document.querySelector('.main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    });
     </script>
 
 </body>
