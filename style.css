@@ -200,6 +200,7 @@ ul {
     /* Classe .open que será adicionada via JS para mostrar o menu */
     .main-nav.open {
         left: 0;
+        z-index: 1000;
     }
 
     /* A lista de links agora é vertical */
